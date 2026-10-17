@@ -1,0 +1,16 @@
+services:
+  app:
+    build: .
+    image: sysdesign-studio:local
+    container_name: sysdesign-studio
+    # Published on loopback only: the app is reachable from this machine, not the network.
+    # Host and container port must match, because the server's Host/Origin allowlist
+    # is derived from PORT.
+    ports:
+      - "127.0.0.1:3001:3001"
+    volumes:
+      - sds-data:/data
+    restart: unless-stopped
+
+volumes:
+  sds-data:
